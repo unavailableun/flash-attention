@@ -1,4 +1,4 @@
-@@ -900,10 +900,17 @@
+@@ -900,10 +900,16 @@
                      return m.group(0)
                  # Hipify header file first if needed
                  if header_filepath not in HIPIFY_FINAL_RESULT:
@@ -9,8 +9,7 @@
 +                    #JCG added skip logic
 +                    if "composable_kernel" in header_filepath:
 +                        print("Force skipping hipification of CK file: " + header_filepath)
-+                        header_result = HIPIFY_FINAL_RESULT[header_filepath]
-+                        header_result.hipified_path = header_filepath
++                        header_result = HipifyResult(current_state=CurrentState.DONE, hipified_path=header_filepath)
 +                        HIPIFY_FINAL_RESULT[header_filepath] = header_result
 +                    else:
 +                        preprocess_file_and_save_result(output_directory,

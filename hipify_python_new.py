@@ -903,8 +903,7 @@ def preprocessor(
                     #JCG added skip logic
                     if "composable_kernel" in header_filepath:
                         print("Force skipping hipification of CK file: " + header_filepath)
-                        header_result = HIPIFY_FINAL_RESULT[header_filepath]
-                        header_result.hipified_path = header_filepath
+                        header_result = HipifyResult(current_state=CurrentState.DONE, hipified_path=header_filepath)
                         HIPIFY_FINAL_RESULT[header_filepath] = header_result
                     else:
                         preprocess_file_and_save_result(output_directory,
